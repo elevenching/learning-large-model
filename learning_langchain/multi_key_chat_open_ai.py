@@ -12,7 +12,7 @@ def round_robin(keys):
             yield key
 
 
-class MultiChatOpenAI(ChatOpenAI):
+class MultiKeyChatOpenAI(ChatOpenAI):
     keys: List[str] = []
 
     def __init__(self, **kwargs):
