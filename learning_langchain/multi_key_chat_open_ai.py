@@ -40,3 +40,4 @@ class MultiKeyChatOpenAI(ChatOpenAI):
     ) -> ChatResult:
         self.openai_api_key = next(self.__dict__['robin'])
         return await super()._agenerate_with_cache(messages, stop, run_manager, **kwargs)
+
