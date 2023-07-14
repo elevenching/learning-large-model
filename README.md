@@ -7,9 +7,9 @@
 
 * 使用代理
 
-    使用 `langchain` 时很方便，参考 `multi_key_chat_open_ai.py`
+    使用 `langchain` 时很方便，参考 `learning_langchain/multi_key_chat_open_ai.py`
     
-    使用 `openai` 包有以下两种方法
+    使用 `openai` 包有以下三种方法
 
     1. 启动 jupyter notebook 设置代理：
         ```bash
