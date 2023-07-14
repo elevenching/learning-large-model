@@ -2,7 +2,7 @@
 
 ## 环境
 
-* `multi_key_chat_open_ai.py` 为了避免 open_ai 的 limit 限制而做了轮训 api_key。
+* `learning_langchain/multi_key_chat_open_ai.py` 为了避免 open_ai 的 limit 限制而做了轮训 api_key。
 
 
 * 使用代理
