@@ -17,11 +17,19 @@ async def consumer():
         sys.stdout.flush()
 
 
+async def producer():
+    while True:
+        message = input("请输入您的问题：")
+        await llm.agenerate(messages=[[HumanMessage(content=message)]])
+        sys.stdout.write("\n")
+        sys.stdout.flush()
+
+
+async def main():
+    consumer_task = asyncio.create_task(consumer())
+    producer_task = asyncio.create_task(producer())
+    await asyncio.gather(consumer_task, producer_task)
+
+
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    message = '什么是AI？'
-    agenerate = llm.agenerate(messages=[[HumanMessage(content=message)]])
-    loop.create_task(agenerate)
-    loop.create_task(consumer())
-    loop.run_forever()
-    loop.close()
+    asyncio.run(main())

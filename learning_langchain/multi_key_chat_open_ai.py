@@ -15,19 +15,23 @@ def round_robin(keys):
 
 
 class MultiKeyChatOpenAI(ChatOpenAI):
+    keys: List[str] = []
 
     def __init__(self, **kwargs):
-        # 加载 .env 文件，获取 OpenAI API Key，才能初始化 ChatOpenAI
+        # 取出 keys 参数，ChatOpenAI 要检查参数，因此需要先取出
+        keys = kwargs.pop('keys', [])
+
+        # 加载 .env 文件，获取 OPENAI_API_KEY，初始化 ChatOpenAI 需要，否则传入 openai_api_key
         load_dotenv(find_dotenv())
         # 设置本地代理 openai_proxy 或代理服务器地址 openai_api_base=https://api.openai-proxy.com
-        kwargs.setdefault('openai_proxy', os.environ['OPENAI_PROXY'])
+        kwargs.setdefault('openai_proxy', os.environ['OPENAI_LOCAL_PROXY'])
         kwargs.setdefault('model', 'gpt-3.5-turbo-16k-0613')
         kwargs.setdefault('verbose', True)
         super().__init__(**kwargs)
 
-        key1 = os.environ['OPENAI_API_KEY']
-        key2 = os.environ['OPENAI_API_KEY2']
-        self.__dict__['robin'] = round_robin([key1, key2])
+        if len(keys) == 0:
+            keys = os.environ['OPENAI_API_KEYS'].split(',')
+        self.__dict__['robin'] = round_robin(keys)
 
     def _generate_with_cache(
             self,
