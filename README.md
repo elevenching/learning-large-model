@@ -18,8 +18,8 @@
         生成配置文件 `~/.jupyter/jupyter_notebook_config.py`，在文件中添加如下配置：
         ```python
         import os
-        os.environ['HTTP_PROXY'] = 'http://127.0.0.1:1080'
-        os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:1080'
+        os.environ['HTTP_PROXY'] = 'http://127.0.0.1:xxxx'
+        os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:xxxx'
         ```
 
     2. 或直接设置代理
